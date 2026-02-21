@@ -1,0 +1,37 @@
+{
+  "id": "innovations-codex",
+  "title": "Innovations Codex",
+  "description": "A Foundry VTT module for dnd5e that implements a homebrew crafting system. Players create blueprint items via the Create Innovation feat, assign them spell levels, and fabricate copies onto actors by spending spell slots.",
+  "version": "1.0.0",
+  "socket": true,
+  "url": "https://github.com/override367/InnovationsCodex",
+  "manifest": "https://raw.githubusercontent.com/override367/InnovationsCodex/main/module.json",
+  "download": "https://github.com/override367/InnovationsCodex/archive/refs/heads/main.zip",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "4.0.0"
+        }
+      }
+    ],
+    "requires": [
+      {
+        "id": "socketlib",
+        "type": "module"
+      }
+    ]
+  },
+  "esmodules": [
+    "main.js"
+  ],
+  "styles": [
+    "styles/innovations-codex.css"
+  ]
+}

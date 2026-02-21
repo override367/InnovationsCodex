@@ -1,0 +1,92 @@
+<section class="innovations-codex-app" style="--ic-icon-size: {{iconSize}}px; --ic-portrait-size: {{portraitSize}}px;">
+  <header class="ic-header">
+    <h2>{{codexName}}</h2>
+  </header>
+
+  <nav class="ic-tabs" data-group="innovations">
+    <button type="button" data-tab="blueprints" class="ic-tab-button {{#if isBlueprintsTab}}active{{/if}}">Blueprints</button>
+    <button type="button" data-tab="active" class="ic-tab-button {{#if isActiveTab}}active{{/if}}">Active Innovations</button>
+  </nav>
+
+  {{!-- Blueprints Tab --}}
+  <section class="ic-tab-panel" data-tab="blueprints" {{#unless isBlueprintsTab}}style="display: none;"{{/unless}}>
+    {{#unless hasParent}}
+      <p>This Codex must be owned by an Actor to manage blueprints.</p>
+    {{else}}
+
+      {{!-- "+ New Innovation" button --}}
+      <div class="ic-actions">
+        <button type="button" class="ic-add-button" data-action="add-innovation">
+          <i class="fas fa-plus"></i> New Innovation
+        </button>
+      </div>
+
+      {{#unless hasTargets}}
+        <p class="ic-notice">No valid target actors found.</p>
+      {{/unless}}
+
+      {{#unless hasBlueprints}}
+        <p class="ic-notice">No blueprints found in this Codex. Click <strong>+ New Innovation</strong> to create one.</p>
+      {{/unless}}
+
+      {{#if hasBlueprints}}
+        <ul class="ic-list">
+          {{#each blueprints}}
+            <li class="ic-row ic-row-blueprint {{#unless canFabricate}}ic-row-uncategorized{{/unless}}" data-blueprint-uuid="{{uuid}}" data-blueprint-name="{{name}}">
+              <img class="ic-icon" src="{{img}}" alt="{{name}}" />
+              <div class="ic-name">{{name}}</div>
+              <div class="ic-slot">
+                <label>Level</label>
+                <select data-slot-level>
+                  {{#each slotOptions}}
+                    <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="ic-target">
+                {{#if ../defaultTarget}}
+                  <img class="ic-target-portrait" src="{{../defaultTarget.img}}" alt="Target" />
+                {{/if}}
+                <select data-target-select {{#unless ../hasTargets}}disabled{{/unless}}>
+                  {{#each ../targets}}
+                    <option value="{{uuid}}" data-portrait="{{img}}">{{name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <button type="button" data-action="fabricate" data-item-uuid="{{uuid}}"
+                {{#unless canFabricate}}disabled title="Assign a spell level before fabricating"{{/unless}}
+                {{#unless ../hasTargets}}disabled{{/unless}}>
+                Fabricate
+              </button>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+
+    {{/unless}}
+  </section>
+
+  {{!-- Active Innovations Tab --}}
+  <section class="ic-tab-panel" data-tab="active" {{#unless isActiveTab}}style="display: none;"{{/unless}}>
+    {{#unless hasActive}}
+      <p class="ic-notice">No active innovations found.</p>
+    {{/unless}}
+    {{#if hasActive}}
+      <ul class="ic-list">
+        {{#each activeInnovations}}
+          <li class="ic-row">
+            <img class="ic-icon" src="{{itemImg}}" alt="{{itemName}}" />
+            <div class="ic-name">{{itemName}}</div>
+            <div class="ic-holder">
+              <img class="ic-target-portrait" src="{{actorImg}}" alt="{{actorName}}" />
+              <span>{{actorName}}</span>
+            </div>
+            <button type="button" data-action="recall" data-item-uuid="{{itemUuid}}">
+              Recall
+            </button>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </section>
+</section>

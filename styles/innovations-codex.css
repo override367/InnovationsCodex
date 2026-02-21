@@ -1,0 +1,224 @@
+/* -------------------------------------------------- */
+/*  Innovations Codex — ApplicationV2 Layout          */
+/* -------------------------------------------------- */
+
+.innovations-codex-app {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.innovations-codex-app .ic-header h2 {
+  margin: 0 0 4px;
+}
+
+/* Tab bar */
+.innovations-codex-app .ic-tabs {
+  display: flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.innovations-codex-app .ic-tab-button {
+  padding: 4px 12px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: inherit;
+}
+
+.innovations-codex-app .ic-tab-button.active {
+  border-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: transparent;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Tab panel (scrollable) */
+.innovations-codex-app .ic-tab-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(100vh - 220px);
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* Actions bar (contains the + button) */
+.innovations-codex-app .ic-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.innovations-codex-app .ic-add-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.innovations-codex-app .ic-add-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.innovations-codex-app .ic-add-button i {
+  font-size: 0.85em;
+}
+
+/* Notice text */
+.innovations-codex-app .ic-notice {
+  opacity: 0.7;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+/* Item list */
+.innovations-codex-app .ic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Row grid (active innovations: 4 columns) */
+.innovations-codex-app .ic-row {
+  display: grid;
+  grid-template-columns: var(--ic-icon-size, 64px) 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Blueprint row: 5 columns (adds slot column) */
+.innovations-codex-app .ic-row.ic-row-blueprint {
+  grid-template-columns: var(--ic-icon-size, 64px) 1fr auto auto auto;
+}
+
+/* Uncategorized row — subtle visual indicator */
+.innovations-codex-app .ic-row.ic-row-uncategorized {
+  border-color: rgba(255, 200, 100, 0.25);
+  opacity: 0.7;
+}
+
+.innovations-codex-app .ic-row.ic-row-uncategorized [data-action="fabricate"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Item icon */
+.innovations-codex-app .ic-icon {
+  width: var(--ic-icon-size, 64px);
+  height: var(--ic-icon-size, 64px);
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Target portrait (circular) */
+.innovations-codex-app .ic-target-portrait {
+  width: var(--ic-portrait-size, 48px);
+  height: var(--ic-portrait-size, 48px);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Target selector column */
+.innovations-codex-app .ic-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Active innovation holder column */
+.innovations-codex-app .ic-holder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Slot selector column */
+.innovations-codex-app .ic-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+}
+
+.innovations-codex-app .ic-slot label {
+  font-size: 0.85em;
+  color: #ccc;
+}
+
+/* All selects — readable on dark background */
+.innovations-codex-app select {
+  background: rgba(0, 0, 0, 0.4);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 3px 6px;
+  min-width: 90px;
+}
+
+.innovations-codex-app select:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+
+.innovations-codex-app select option {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+/* Blueprint name */
+.innovations-codex-app .ic-name {
+  font-weight: 600;
+  color: #e8e8e8;
+  word-break: break-word;
+}
+
+/* Action buttons — visible on dark theme */
+.innovations-codex-app button[data-action="fabricate"],
+.innovations-codex-app button[data-action="recall"] {
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.innovations-codex-app button[data-action="fabricate"]:hover:not([disabled]),
+.innovations-codex-app button[data-action="recall"]:hover:not([disabled]) {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.innovations-codex-app button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
